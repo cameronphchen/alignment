@@ -1,0 +1,5 @@
+loading data: t_cb_vt_rh
+loading data: t_dm_vt_rh
+loading data: t_hj_vt_rh
+start hyperalignment
+load RG data from file

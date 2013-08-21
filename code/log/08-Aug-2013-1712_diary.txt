@@ -1,0 +1,33 @@
+loading data: t_cb_vt_rh
+loading data: t_dm_vt_rh
+loading data: t_hj_vt_rh
+start hyperalignment
+calculate RG
+DO FCH
+calculate S
+calculate G
+start iterative solving
+1th iteration : G-G_tmp 587844585.097598
+2th iteration : G-G_tmp 309232044.315166
+finish hyperalignment : G-G_tmp 0.000004
+Elapsed time is 637.908127 seconds.
+loading data: t_cb_vt_rh
+loading data: t_dm_vt_rh
+loading data: t_hj_vt_rh
+loading data: t_kd_vt_rh
+loading data: t_kl_vt_rh
+loading data: t_mh_vt_rh
+loading data: t_ph_vt_rh
+loading data: t_rb_vt_rh
+loading data: t_se_vt_rh
+loading data: t_sm_vt_rh
+start hyperalignment
+calculate RG
+DO FCH
+calculate S
+calculate G
+start iterative solving
+1th iteration : G-G_tmp 306714672.702130
+2th iteration : G-G_tmp 420546230.572169
+finish hyperalignment : G-G_tmp 0.000003
+Elapsed time is 2092.855216 seconds.

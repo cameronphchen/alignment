@@ -2,8 +2,8 @@ clear
 
 %%set parameters
 fprintf('loading options\n')
-options.exptype = 'HA_PRELIM' % PRELIM: preliminary or LOO: leave one out
-alignment_handle = @HA;
+options.exptype = 'CFCH2_PRELIM' % PRELIM: preliminary or LOO: leave one out
+alignment_handle = @CFCH2;
 
 options.time = clock
 options.time = [date '-' num2str(options.time(4)) num2str(options.time(5))]
@@ -11,7 +11,7 @@ options.input_path = '../data/input/';
 options.working_path = '../data/working/' ; 
 options.output_path = '../data/output/' ; 
 options.random_seed = 1;
-options.training_data = {'t_cb_vt_rh','t_dm_vt_rh','t_hj_vt_rh'}%,'t_kd_vt_rh',...
+options.training_data = {'t_cb_vt_rh','t_dm_vt_rh'}%,'t_hj_vt_rh','t_kd_vt_rh',...
 %                    't_kl_vt_rh','t_mh_vt_rh','t_ph_vt_rh','t_rb_vt_rh',...
 %                   't_se_vt_rh','t_sm_vt_rh'};
 
@@ -63,7 +63,7 @@ else
   save( [ options.output_path RG_filename ], 'R', 'G');
 end
 
-diary off;
+error('stop')
 
 fprintf('Use R to rotate data\n');
 
@@ -97,7 +97,7 @@ end
 bsc_acc = correctNum/allCount
 
 cd(origin_path)
-
+diary off;
 %for i=1:size(options.training_data,2),
 %  idx = find(subjid!=i);
 %  for j=1:numel(idx)

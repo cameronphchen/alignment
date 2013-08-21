@@ -1,0 +1,14 @@
+loading data: t_cb_vt_rh
+loading data: t_dm_vt_rh
+loading data: t_hj_vt_rh
+start hyperalignment
+calculate RG
+{Out of memory. Type HELP MEMORY for your options.
+
+Error in CFCH2 (line 9)
+  S = zeros(nTR,nv2,nsubj);
+
+Error in run_experiment (line 61)
+  [R G]=alignment_handle(X);
+} 
+exit
