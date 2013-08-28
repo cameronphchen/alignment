@@ -1,9 +1,0 @@
-loading data: t_cb_vt_rh
-loading data: t_dm_vt_rh
-loading data: t_hj_vt_rh
-loading data: t_kd_vt_rh
-start hyperalignment
-calculate RG
-stackX
-Stack SVD done
-Elapsed time is 2.783360 seconds.

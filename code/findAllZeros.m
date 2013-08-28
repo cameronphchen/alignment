@@ -11,6 +11,6 @@ end
 
 % Make sure that there are no duplicates.
 x = unique(x);
-DUPE = diff([x NaN]) < 1e-2;
+DUPE = diff([x NaN]) < 1.5e-1;
 x(DUPE) = [];
-assert(size(x,1) <= numroot);
+%assert(size(x,2) <= numroot);
