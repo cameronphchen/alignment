@@ -50,11 +50,9 @@ clear
   fprintf('G_diff %f\n', G_diff);
   count = 0;
   while G_diff>1e-2
-    G
-    Q
     count = count+1;
     fprintf('=======================================\n');
-    fprintf('%dth obj_val= %d, %d, %d\n',count,obj_val(1),obj_val(2),obj_val(3));
+    fprintf('%dth obj_val=%d %d, %d, %d\n',count,sum(obj_val),obj_val(1),obj_val(2),obj_val(3));
     fprintf('G_diff %f\n', G_diff);
 
     G_tmp = G;
@@ -71,8 +69,8 @@ clear
       end
       %fprintf('Finshed Calculate SG\n'); 
       %fprintf('solve sdp\n');
-      
-      SD=SG(:,1);
+      [U_sg D_sg V_sg] = svd(SG,'econ');
+      SD=U_sg(:,1);
       SD= sign(SD(1))*SD;
       D=diag(sign(SD));
       
@@ -105,46 +103,6 @@ clear
         ep(p,1) = 1;
         Z = eq*ep' - ep*eq';
         
-        
-        %ZSG = zeros(nvoxel,nvoxel);
-        %ZZSG = zeros(nvoxel,nvoxel);
-        %ZSZG= zeros(nvoxel,nvoxel);
-        %ZZSZG= zeros(nvoxel,nvoxel);
-        %ZSZZG= zeros(nvoxel,nvoxel);
-        %ZZSZZG= zeros(nvoxel,nvoxel);
-        %SZG= zeros(nvoxel,nvoxel);
-        %SZZG= zeros(nvoxel,nvoxel);
-        %ZZSZZG= zeros(nvoxel,nvoxel);
-      
-        %ZZ = Z*Z;
-        %for t=1:nTR
-        %  St = (W'*U'*S(:,:,i,t)*U*W);
-        %  Gt = (D*V'*G(:,:,t)*V*D');
-        %  ZSG = ZSG + Z*St*Gt;
-        %  ZZSG = ZZSG + ZZ*St*Gt;
-        %  ZSZG = ZSZG + Z*St*Z*Gt;
-        %  ZZSZG = ZZSZG + ZZ*St*Z*Gt;
-        %  ZSZZG = ZSZZG + Z*St*ZZ*Gt;
-        %  ZZSZZG = ZZSZZG + ZZ*St*ZZ*Gt;
-        %  SZG = SZG + St*Z*Gt;
-        %  SZZG = SZZG + St*ZZ*Gt;
-        %  ZZSZZG = ZZSZZG + ZZ*St*ZZ*Gt;
-        %end
-        %  ZSG = trace(ZSG);
-        %  ZZSG = trace(ZZSG);
-        %  ZSZG = trace(ZSZG);
-        %  ZZSZG = trace(ZZSZG);
-        %  ZSZZG = trace(ZSZZG);
-        %  ZZSZZG = trace(ZZSZZG);
-        %  SZG = trace(SZG);
-        %  SZZG = trace(SZZG);
-        %  ZZSZZG = trace(ZZSZZG);
-
-        %func = @(x) cos(x)*ZSG + sin(x)*ZZSG + sin(x)*cos(x)*ZSZG ...
-        %           + sin(x)^2*ZZSZG + cos(x)*(1-cos(x))*ZSZZG + sin(x)*(1-cos(x))*ZZSZZG...
-        %           + cos(x)*SZG + sin(x)*cos(x)*ZSZG + (1-cos(x))*cos(x)*ZZSZG...
-        %           + sin(x)*SZZG + sin(x)^2*ZSZZG + (1-cos(x))*sin(x)*ZZSZZG;
-        
          fun_partial = @(x) 0;
          for t=1:nTR
            S_t = W'*U'*S(:,:,i,t)*U*W;
@@ -164,10 +122,10 @@ clear
          
         
          %figure 
-         figure(1)
-         fplot(fun_partial,[0 2*pi],1000)
-         figure(2)
-         fplot(fun,[0 2*pi],1000)
+         %figure(1)
+         %fplot(fun_partial,[0 2*pi],1000)
+         %figure(2)
+         %fplot(fun,[0 2*pi],1000)
 
          theta = findAllZeros(fun_partial,4)
          %display(theta); 
@@ -180,7 +138,8 @@ clear
               max_val = fun(theta(y));
             end
          end
-         theta = theta(max_idx)
+         theta = theta(max_idx);
+         
          W = W * (eye(nvoxel,nvoxel)+sin(theta)*Z + (1-cos(theta))*Z*Z);
       end
       
@@ -209,9 +168,14 @@ clear
     for t=1:nTR,
       for i=1:nsubj,
         G(:,:,t) = G(:,:,t) + Q(:,:,i)'*S(:,:,i,t)*Q(:,:,i);
-        obj_val(i) = obj_val(i) + trace(Q(:,:,i)'*S(:,:,i,t)*Q(:,:,i)*G(:,:,t));
       end
       G_diff = G_diff + norm(G(:,:,t)-G_tmp(:,:,t),'fro');
+    end
+    
+    for t=1:nTR
+      for i=1:nTR
+        obj_val(i) = obj_val(i) + trace(Q(:,:,i)'*S(:,:,i,t)*Q(:,:,i)*G(:,:,t));
+      end
     end
 
   end
