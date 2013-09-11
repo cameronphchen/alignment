@@ -4,18 +4,25 @@ function [R,G] =  HA(s)
   nvoxel = size(s,2);
   nsubj  = size(s,3);
 
+
   R = zeros(nvoxel,nvoxel,nsubj);
   % random orthogonal matrix initialization
+  fprintf('generate R\n');
   for i=1:nsubj,
+    fprintf('%d',i);
     R(:,:,i) = orth(randn(nvoxel,nvoxel));
   end
+  fprintf('\n');  
 
+  fprintf('generate G\n')
   G = zeros(nTR,nvoxel);
   for i=1:nsubj,
+    fprintf('%d',i);
     G = G + s(:,:,i)*R(:,:,i);
   end
   G = G/nsubj;
   G_tmp=zeros(nTR,nvoxel);
+  fprintf('\n');  
 
   count = 0;
   while norm(G-G_tmp,'fro')>1e-3 

@@ -11,8 +11,7 @@ function [R,G] =  StackSVD(X)
   end
   
   [U,S,V] = svd(StackX,'econ');
-  R = zeros(nvoxel,nTR,nsubj);
-
+  R = zeros(nvoxel,size(S,2),nsubj);
   for i=1:nsubj,
     R(:,:,i) = V((1+nvoxel*(i-1)):nvoxel*i,:);
   end

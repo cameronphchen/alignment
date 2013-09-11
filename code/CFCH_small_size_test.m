@@ -82,8 +82,8 @@ clear
         for t=1:nTR
           GS = GS + (D*V'*G(:,:,t)*V*D')*(W'*U'*S(:,:,i,t)*U*W);
         end
-        %[p q] = argmax |GS(p,q)-GS(q,p)|
         GS_tmp = GS - GS';
+        %[p q] = argmax |GS(p,q)-GS(q,p)|
         %[sortedValues,sortIndex] = sort(GS_tmp(:),'descend');
         %idx_count = 1;
         %p = mod((sortIndex(idx_count)-1),nvoxel)+1;
