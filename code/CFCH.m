@@ -4,15 +4,15 @@
 %  nvoxel = size(X,2);
 %  nsubj  = size(X,3);
   tic
-  nTR    = 100
-  nvoxel = 100
+  nTR    = 800
+  nvoxel = 800
   nsubj  = 10
   N=1
   %use generateSij to precompute S 
-   S_datapath = ['/mnt/cd/fastscratch/pohsuan/S_matrix_vs' num2str(nvoxel)]
-  G_datapath = ['/mnt/cd/fastscratch/pohsuan/G_matrix_vs' num2str(nvoxel) num2str(N) '_' num2str(nsubj) '_' num2str(nTR) '/']
-  Q_datapath = ['/mnt/cd/fastscratch/pohsuan/Q_matrix_vs' num2str(nvoxel) num2str(N) '_' num2str(nsubj) '_' num2str(nTR) '/']
-  setting_path = ['/mnt/cd/fastscratch/pohsuan/setting_vs'num2str(nvoxel) num2str(N) '_' num2str(nsubj) '_' num2str(nTR) '/']
+   S_datapath = ['/mnt/cd/fastscratch/pohsuan/S_matrix_vs' num2str(nvoxel) '_' num2str(nTR) '/']
+  G_datapath = ['/mnt/cd/fastscratch/pohsuan/G_matrix_vs' num2str(nvoxel) '_N' num2str(N) '_s' num2str(nsubj) '_t' num2str(nTR) '/']
+  Q_datapath = ['/mnt/cd/fastscratch/pohsuan/Q_matrix_vs' num2str(nvoxel) '_N' num2str(N) '_s' num2str(nsubj) '_t' num2str(nTR) '/']
+  setting_path = ['/mnt/cd/fastscratch/pohsuan/setting_vs' num2str(nvoxel) '_N' num2str(N) '_s' num2str(nsubj) '_t' num2str(nTR) '/']
   mkdir(G_datapath)
   mkdir(Q_datapath)
   mkdir(setting_path)

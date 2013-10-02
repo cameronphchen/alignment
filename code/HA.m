@@ -10,7 +10,8 @@ function [R,G] =  HA(s)
   fprintf('generate R\n');
   for i=1:nsubj,
     fprintf('%d',i);
-    R(:,:,i) = orth(randn(nvoxel,nvoxel));
+%    R(:,:,i) = orth(randn(nvoxel,nvoxel));
+    R(:,:,i) = eye(nvoxel,nvoxel);
   end
   fprintf('\n');  
 
@@ -44,6 +45,7 @@ function [R,G] =  HA(s)
 
 %    display(G);
   end
-  fprintf('finish hyperalignment');
+  fprintf('G-G_tmp %f\n', norm(G-G_tmp,'fro'));
+  fprintf('finish hyperalignment\n');
 return
 

@@ -28,6 +28,7 @@ end
 
 
 for j=1:numel(nTR_set)
+  %{
   figure
   hold on; grid on;
   errorbar(2:10,data_accuracy(1,:,j,1),data_accuracy(2,:,j,1),'-g.', 'LineWidth',1.5,'MarkerSize',12);
@@ -39,17 +40,18 @@ for j=1:numel(nTR_set)
   ylabel('accuracy')
   title([num2str(nTR_set(j)) 'TRs' ' accuracy'])
   axis([2 10 0 0.6])
-  saveas(gcf,  ['/Users/ChimatChen/Dropbox/Research/Hyperalignment/prelim_accuracy_' num2str(nTR_set(j)) 'TRs']  , 'epsc')
-
-
+  saveas(gcf,  ['/Users/ChimatChen/Dropbox/Research/Hyperalignment/figures/prelim_accuracy_' num2str(nTR_set(j)) 'TRs']  , 'epsc')
+  %}
+  
   figure
-  hold on; grid on;
-  plot(2:10,data_time(:,j,1),'-g.', 'LineWidth',1.5,'MarkerSize',12);
-  plot(2:10,data_time(:,j,2), '-b.', 'LineWidth',1.5,'MarkerSize',12);
-  plot(2:10,data_time(:,j,3),'-r.', 'LineWidth',1.5,'MarkerSize',12);
+  semilogy(2:10,data_time(:,j,1),'-g.', 'LineWidth',1.5,'MarkerSize',12);
+  hold on;
+  semilogy(2:10,data_time(:,j,2), '-b.', 'LineWidth',1.5,'MarkerSize',12);
+  semilogy(2:10,data_time(:,j,3),'-r.', 'LineWidth',1.5,'MarkerSize',12);
   legend(exp_name,'Location', 'NorthWest');
   xlabel('number of subjects')
   ylabel('alignment time(sec)')
   title([num2str(nTR_set(j)) 'TRs' ' time'])
-  saveas(gcf, [ '/Users/ChimatChen/Dropbox/Research/Hyperalignment/prelim_time_' num2str(nTR_set(j)) 'TRs'], 'epsc')
+  grid on;
+  saveas(gcf, [ '/Users/ChimatChen/Dropbox/Research/Hyperalignment/figures/prelim_time_' num2str(nTR_set(j)) 'TRs'], 'epsc')
 end
